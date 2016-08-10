@@ -1,13 +1,9 @@
 'use strict';
 
-var skModApp = angular.module('skModApp', ['ngRoute', 'skModMain', 'skModFooter']);
+var skModApp = angular.module('skModApp', ['ngRoute', 'skModMain', 'skModFooter', 'skModNavbar']);
 
 skModApp.config(['$routeProvider', function ($routeProvider) {
     console.log('in config');
-    // $routeProvider.otherwise({
-    //     redirectTo: '/'
-    // });
-    // $locationProvider.html5Mode(true);
 }]);
 
 skModApp.run(function ($rootScope, $location) {
@@ -33,6 +29,23 @@ function FooterController() {}
 skModFooter.component('skFooter', {
     templateUrl: 'components/footer/footer.html',
     controller: FooterController
+});
+'use strict';
+
+var skModNavbar = angular.module('skModNavbar', ['ngRoute']);
+
+skModNavbar.config(['$routeProvider', function ($routeProvider) {
+    console.log('in skModNavbar config');
+    $routeProvider.otherwise({
+        redirectTo: '/'
+    });
+}]);
+
+function NavbarController() {}
+
+skModNavbar.component('skNavbar', {
+    templateUrl: 'components/Navbar/Navbar.html',
+    controller: NavbarController
 });
 'use strict';
 

@@ -2,7 +2,7 @@ var gulp = require('gulp'),
     nodemon = require('gulp-nodemon'),
     gulpLoadPlugins = require('gulp-load-plugins'),
     plugins = gulpLoadPlugins(),
-    // livereload = require('gulp-livereload'),
+    livereload = require('gulp-livereload'),
     sass = require('gulp-ruby-sass'),
     babel = require('gulp-babel');
 // sass = require('gulp-sass');
@@ -31,7 +31,7 @@ gulp.task('sass', function() {
         .pipe(plugins.cssmin())
         .pipe(plugins.concat("app.min.css"))
         .pipe(gulp.dest(paths.dest.css))
-        .pipe(plugins.livereload());
+        .pipe(livereload());
 });
 
 gulp.task('css:vendor', function() {
@@ -39,7 +39,7 @@ gulp.task('css:vendor', function() {
         .pipe(plugins.cssmin())
         .pipe(plugins.concat("vendor.min.css"))
         .pipe(gulp.dest(paths.dest.css))
-        .pipe(plugins.livereload());
+        .pipe(livereload());
 });
 
 gulp.task('js:app', function() {
@@ -53,7 +53,7 @@ gulp.task('js:app', function() {
         .pipe(plugins.concat("app.min.js"))
         .pipe(plugins.uglify())
         .pipe(gulp.dest(paths.dest.jsapp))
-        .pipe(plugins.livereload());
+        .pipe(livereload());
 });
 
 gulp.task('js:vendor', function() {
@@ -61,13 +61,14 @@ gulp.task('js:vendor', function() {
         .pipe(plugins.concat("vendor.min.js"))
         .pipe(plugins.uglify())
         .pipe(gulp.dest(paths.dest.jsvendor))
-        .pipe(plugins.livereload());
+        .pipe(livereload());
 });
 
 
 
 gulp.task('watch', function() {
-    plugins.livereload.listen();
+    livereload.createServer();
+    livereload.listen();
     gulp.watch(paths.src.scss, ['sass']);
     gulp.watch(paths.src.cssvendor, ['css:vendor']);
     gulp.watch(paths.src.jsapp, ['js:app']);
@@ -81,7 +82,7 @@ gulp.task('develop', function() {
     }).on('readable', function() {
         this.stdout.on('data', function(chunk) {
             if (/^Express server listening on port/.test(chunk)) {
-                plugins.livereload.changed(__dirname);
+                livereload.changed(__dirname);
             }
         });
         this.stdout.pipe(process.stdout);

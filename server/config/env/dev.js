@@ -4,7 +4,7 @@
 // ==================================
 module.exports = {
     mongo: {
-        uri: 'mongodb://localhost/santy-framwork-dev'
+        uri: 'mongodb://localhost:27017/santy-framwork-dev'
     },
     seedDB: true
 };

@@ -1,15 +1,11 @@
 'use strict';
 
 var skModApp = angular.module('skModApp', ['ngRoute',
-    'skModMain', 'skModFooter'
+    'skModMain', 'skModFooter', 'skModNavbar'
 ]);
 
 skModApp.config(['$routeProvider', function($routeProvider) {
     console.log('in config');
-    // $routeProvider.otherwise({
-    //     redirectTo: '/'
-    // });
-    // $locationProvider.html5Mode(true);
 }]);
 
 skModApp.run(function($rootScope, $location) {

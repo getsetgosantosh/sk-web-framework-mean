@@ -4,6 +4,6 @@
 module.exports = {
     port: process.env.port || 8080,
     mongo: {
-        uri: 'mongodb://localhost/santy-framwork-prod'
+        uri: 'mongodb://localhost:27017/santy-framwork-prod'
     }
 };
